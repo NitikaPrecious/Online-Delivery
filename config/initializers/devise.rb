@@ -14,12 +14,12 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '5b9cef10fb45cf6fc395ec1dade94e7288250519d8ae99076efacd11b25d4e9f244b9eb59d83044c732ade467b0b642a6613239c20d01b0d5c4f36092952b66d'
+  # config.secret_key = '4d71d6bf9ea3c6f8c1852ed6f4ade55bc1e6b1a2d8e2ffa15bd8d2f04b42755c33ffdcfa61767c3a14cc3807662f7d43b4c02d868b40bcde7e7e7624f09c2a5c'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
-  config.navigational_formats = ['*/*', :html, :turbo_stream]
+
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
@@ -126,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '64a420c856101bb06bcbc24f39c31652efbbdfaad3a6b31c9f9cb7ae8819abdb341f355bd3bce30b5e5c269c354142d9fca156f6202b975078b271e2b3153130'
+  # config.pepper = '9255c6f3932106a29d5b69077064b3241848a47ac35b265abf1839d4054fcf47d3b7fad1c38083312dee689d2268de2a3ec4bc58269e9f41efc8c236f5b354fc'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -244,7 +244,7 @@ Devise.setup do |config|
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
   # "users/sessions/new". It's turned off by default because it's slower if you
   # are using only default views.
-  # config.scoped_views = false
+  config.scoped_views = true
 
   # Configure the default scope given to Warden. By default it's the first
   # devise role declared in your routes (usually :user).
@@ -309,5 +309,5 @@ Devise.setup do |config|
 
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
-  # config.sign_in_after_change_password = true
+   config.sign_in_after_change_password = false
 end
