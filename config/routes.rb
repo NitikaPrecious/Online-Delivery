@@ -8,13 +8,6 @@ Rails.application.routes.draw do
   get 'items/create'
   get 'items/update'
   get 'items/destroy'
-  get 'restaurant/index'
-  get 'restaurant/show'
-  get 'restaurant/new'
-  get 'restaurant/create'
-  get 'restaurant/edit'
-  get 'restaurant/update'
-  get 'restaurant/destroy'
   get 'itemcategory/index'
   get 'building/index'
   get 'building/new'
@@ -29,4 +22,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
    root "home#index"
+   
+   resources :restaurants
 end

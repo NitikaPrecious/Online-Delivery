@@ -1,0 +1,38 @@
+<%= form_with model: restaurant do |form| %>
+    <div>
+      <%= form.label :name %><br>
+      <%= form.text_field :name%>
+      <% restaurant.errors.full_messages_for(:name).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+  
+    <div>
+      <%= form.label :description %><br>
+      <%= form.text_area :description %><br>
+      <% restaurant.errors.full_messages_for(:description).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+
+    <div>
+      <%= form.label :address %><br>
+      <%= form.text_field :address %><br>
+      <% restaurant.errors.full_messages_for(:address).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+
+    <div>
+      <%= form.label :phone_1 %><br>
+      <%= form.text_field :phone_1 %><br>
+      <% restaurant.errors.full_messages_for(:phone_1).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+
+    <div>
+      <%= form.submit %>
+    </div>
+  <% end %>
+  
