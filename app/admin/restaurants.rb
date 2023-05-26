@@ -10,7 +10,7 @@ ActiveAdmin.register Restaurant do
   # or
   #
    permit_params do
-     permitted = [:name, :description, :address, :phone_1, :phone_2, :minimum_order, :delivery_charge, :building_id]
+     permitted = [:name, :description, :address, :phone_1, :phone_2, :minimum_order, :delivery_charge]
    #  permitted << :other if params[:action] == 'create' && current_user.admin?
      permitted
    end

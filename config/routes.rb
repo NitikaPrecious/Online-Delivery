@@ -24,4 +24,5 @@ Rails.application.routes.draw do
    root "home#index"
    
    resources :restaurants
+   get '/search', to: 'restaurants#search'
 end

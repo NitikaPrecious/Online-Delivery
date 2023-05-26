@@ -37,13 +37,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_081338) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "buildings", force: :cascade do |t|
-    t.string "name"
-    t.integer "city_area_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "item_categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -70,10 +63,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_081338) do
     t.string "phone_2"
     t.string "minimum_order"
     t.string "delivery_charge"
-    t.integer "building_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["building_id"], name: "index_restaurants_on_building_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -97,5 +88,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_081338) do
 
   add_foreign_key "items", "item_categories"
   add_foreign_key "items", "restaurants"
-  add_foreign_key "restaurants", "buildings"
 end

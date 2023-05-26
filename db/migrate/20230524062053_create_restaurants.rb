@@ -8,8 +8,6 @@ class CreateRestaurants < ActiveRecord::Migration[7.0]
       t.string :phone_2
       t.string :minimum_order
       t.string :delivery_charge
-      t.references :building, null: false, foreign_key: true
-
       t.timestamps
     end
   end

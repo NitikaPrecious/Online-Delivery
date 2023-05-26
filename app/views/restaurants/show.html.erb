@@ -1,5 +1,20 @@
-<h1>Welcome to <%= @restaurant.name %></h1><br>
+<table>
+<tr><h1>Welcome to <%= @restaurant.name %></h1></tr>
+<tr>
+<h3>Address : <%= @restaurant.address%></tr>
+<h3>Contact_number_1 : <%= @restaurant.phone_1%></h3>
+<h3>Contact_number_2 : <%= @restaurant.phone_2%></h3>
+<h3>Minimum_order : <%= @restaurant.minimum_order%></h3>
+<h3>Delivery_charge : <%= @restaurant.delivery_charge%></h3>
+<h4>Description : </h4><%= @restaurant.description %></h4>
+</table>
 
-<p><h4>Description</h4>  <%= @restaurant.description %></p>
-
-
+<h1><%= @restaurant.name %></h1> 
+<p>
+   <strong>Address: </strong> $<%= @restaurant.address %><br />
+   <strong>Contact_number_1 :</strong> <%= @restaurant.phone_1 %><br />
+   <strong>Contact_number_2 Date:</strong> <%= @restaurant.phone_2 %><br />
+</p> 
+<p><%= @restaurant.description %></p>
+<hr /> 
+<%= link_to 'Back', {:action => 'index'} %>
