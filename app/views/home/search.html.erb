@@ -1,0 +1,12 @@
+<% @results.each do |restaurant| %>
+  <h2><%= restaurant.name %></h2>
+  <ul>
+    <% restaurant.items.each do |item| %>
+      <li><%= item.name %></li>
+      <li><%= item.description %></li>
+      <li><%= item.price %></li>
+      <!-- Add any other relevant details you want to display -->
+    <% end %>
+  </ul>
+<% end %>
+<%= button_to "Add to Cart"%>

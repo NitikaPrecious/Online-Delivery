@@ -5,4 +5,10 @@
   <%= button_to "Sign in", new_user_session_path %> 
 <% end %>
 <h1>"welcome to the Online-Delivery System" <h1>
-<%= link_to "Restaurants", restaurants_path%>
+
+<%= form_tag({ controller: 'home', action: 'search' }, method: 'get') do %>
+  <%= select_tag :restaurant_id, options_for_select(Restaurant.all.map { |restaurant| [restaurant.name, restaurant.id] }), include_blank: 'All Restaurants' %>
+  <%= select_tag :item_id, options_for_select(Item.all.map { |item| [item.name, item.id] }), include_blank: 'All Items' %>
+  <%= submit_tag 'Search' %>
+<% end %>
+

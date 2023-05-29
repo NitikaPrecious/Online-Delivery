@@ -1,21 +1,8 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  get 'items/index'
-  get 'items/show'
-  get 'items/new'
-  get 'items/edit'
-  get 'items/create'
-  get 'items/update'
-  get 'items/destroy'
   get 'itemcategory/index'
-  get 'building/index'
-  get 'building/new'
-  get 'building/show'
-  get 'building/create'
-  get 'building/edit'
-  get 'building/update'
-  get 'building/destroy'
+
   devise_for :users
  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -24,5 +11,10 @@ Rails.application.routes.draw do
    root "home#index"
    
    resources :restaurants
+   resources :items
    get '/search', to: 'restaurants#search'
+   get 'home/search'
+   get 'cart', to: 'cart#index',as: 'cart'
+   post 'cart/add_to_cart', as: 'add_to_card'
+   delete 'cart/clear_cart', to: 'cart#clear_cart', as: 'clear-cart'
 end

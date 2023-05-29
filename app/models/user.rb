@@ -3,6 +3,8 @@ class User < ApplicationRecord
   #  :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,:confirmable,
          :recoverable, :validatable
+  has_many :orders
+  has_one :cart
   validates :phone_number, numericality: {only_integer: true}
   
   before_validation :normalize_name, on: :create

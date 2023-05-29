@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_24_081338) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_29_110240) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -37,6 +37,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_081338) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "carts", force: :cascade do |t|
+    t.integer "total_amount"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
   create_table "item_categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -53,6 +61,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_081338) do
     t.datetime "updated_at", null: false
     t.index ["item_category_id"], name: "index_items_on_item_category_id"
     t.index ["restaurant_id"], name: "index_items_on_restaurant_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "order_no"
+    t.integer "user_id", null: false
+    t.integer "restaurant_id", null: false
+    t.string "address"
+    t.string "city"
+    t.integer "delivery_charges"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["restaurant_id"], name: "index_orders_on_restaurant_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "restaurants", force: :cascade do |t|
@@ -86,6 +107,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_081338) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "carts", "users"
   add_foreign_key "items", "item_categories"
   add_foreign_key "items", "restaurants"
+  add_foreign_key "orders", "restaurants"
+  add_foreign_key "orders", "users"
 end

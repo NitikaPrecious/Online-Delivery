@@ -1,2 +1,8 @@
-<h1>Items#show</h1>
-<p>Find me in app/views/items/show.html.erb</p>
+<h1><%= @item.name %></h1>
+<p><%= @item.description %></p>
+<p><%= @item.price %></p>
+
+<%= form_with(url: add_to_cart_path, method: :post) do |form| %>
+  <%= form.hidden_field :item_id, value: @item.id %>
+  <%= form.submit 'Add to Cart' %>
+<% end %>
