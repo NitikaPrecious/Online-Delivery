@@ -2,7 +2,7 @@
 <p><%= @item.description %></p>
 <p><%= @item.price %></p>
 
-<%= form_with(url: add_to_cart_path, method: :post) do |form| %>
+<%= form_with(url: cart_items_path, method: :post) do |form| %>
   <%= form.hidden_field :item_id, value: @item.id %>
-  <%= form.submit 'Add to Cart' %>
+  <%= button_to "Add to Cart", cart_items_path, params: {item: @item} %>
 <% end %>

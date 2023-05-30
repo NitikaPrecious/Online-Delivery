@@ -2,7 +2,7 @@
 <p><%= notice %></p>
 
 <% @cart_items.each do |item| %>
-  <p><%= item..name %> - <%= item.product.price %></p>
+  <p><%= item..name %> - <%= item.price %></p>
   <%= link_to 'Remove', remove_from_cart_path(item), method: :delete %>
 <% end %>
 

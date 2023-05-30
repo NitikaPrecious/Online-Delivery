@@ -1,5 +1,6 @@
-ActiveAdmin.register Item do
+# frozen_string_literal: true
 
+ActiveAdmin.register Item do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -9,10 +10,9 @@ ActiveAdmin.register Item do
   #
   # or
   #
-   permit_params do
-     permitted = [:name, :description, :price, :restaurant_id, :itemcategory_id]
+  permit_params do
+    permitted = %i[name description price restaurant_id itemcategory_id]
     #  permitted << :other if params[:action] == 'create' && current_user.admin?
-     permitted
-   end
-  
+    permitted
+  end
 end

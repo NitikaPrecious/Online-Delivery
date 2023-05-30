@@ -1,17 +1,17 @@
-class RestaurantsController < ApplicationController
+# frozen_string_literal: true
 
+class RestaurantsController < ApplicationController
   def index
-   
-   if params[:query].blank?
-    @restaurants = Restaurant.all
-   else
-    @query = params[:query]
-    @restaurants = Restaurant.where("lower(name) LIKE ?","%#{@query}%")
+    if params[:query].blank?
+      @restaurants = Restaurant.all
+    else
+      @query = params[:query]
+      @restaurants = Restaurant.where('lower(name) LIKE ?', "%#{@query}%")
+    end
   end
-end
 
   def search
-    @restaurants = Restaurant.where("name Like ?", "%#{params[:query]}%")
+    @restaurants = Restaurant.where('name Like ?', "%#{params[:query]}%")
   end
 
   def show
@@ -30,7 +30,6 @@ end
     else
       render :new, status: :unprocessable_entity
     end
-
   end
 
   def edit
@@ -55,6 +54,7 @@ end
   end
 
   private
+
   def restaurant_params
     params.require(:restaurant).permit(:name)
   end

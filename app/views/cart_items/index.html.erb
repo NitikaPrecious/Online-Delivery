@@ -1,0 +1,9 @@
+ <h1> "My Cart Items" </h1>
+    <% @cart.each do |cartitem| %>
+      <h2>Name : <%= cartitem.item.name %></h2>
+          <h3>Description : <%= cartitem.item.description %></h3>
+          <h3>Price : <%= cartitem.item.price %></h3>
+          <%= button_to "remove" , cart_item_path(cartitem) , params: {item: cartitem} , method: :delete%>
+        <% end %>
+
+    

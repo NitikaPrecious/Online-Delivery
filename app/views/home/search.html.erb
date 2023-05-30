@@ -2,11 +2,11 @@
   <h2><%= restaurant.name %></h2>
   <ul>
     <% restaurant.items.each do |item| %>
-      <li><%= item.name %></li>
-      <li><%= item.description %></li>
-      <li><%= item.price %></li>
+      <li>Name :<%= item.name %></li>
+      <li>Description : <%= item.description %></li>
+      <li>Price : <%= item.price %></li>
       <!-- Add any other relevant details you want to display -->
+      <%= button_to "Add to Cart", cart_items_path, params: {item: item} %>
     <% end %>
   </ul>
 <% end %>
-<%= button_to "Add to Cart"%>
