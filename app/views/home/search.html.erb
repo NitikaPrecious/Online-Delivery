@@ -5,8 +5,8 @@
       <li>Name :<%= item.name %></li>
       <li>Description : <%= item.description %></li>
       <li>Price : <%= item.price %></li>
-      <!-- Add any other relevant details you want to display -->
-      <%= button_to "Add to Cart", cart_items_path, params: {item: item} %>
+      <%= button_to "Add to Cart", cart_items_path(cart_item_id: item.id), method: :post%>
+      <%= button_to 'Order', orders_path({cart_item_id: item.id }, {restaurant_id: item.restaurant.id }), method: :post %>
     <% end %>
   </ul>
 <% end %>

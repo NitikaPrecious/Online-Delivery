@@ -8,7 +8,6 @@ class HomeController < ApplicationController
   def search
     item_id = params[:item_id]
     restaurant_id = params[:restaurant_id]
-
     @results = if item_id.present? && restaurant_id.present?
                  Restaurant.includes(:items, :orders).where(id: restaurant_id, items: { id: item_id })
                elsif item_id.present?

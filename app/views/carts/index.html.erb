@@ -1,9 +1,13 @@
-<h1>Cart</h1>
-<p><%= notice %></p>
-
-<% @cart_items.each do |item| %>
-  <p><%= item..name %> - <%= item.price %></p>
-  <%= link_to 'Remove', remove_from_cart_path(item), method: :delete %>
-<% end %>
-
-<%= link_to 'Clear Cart', clear_cart_path, method: :delete %>
+<h1> "Cart Items" </h1>
+<% @carts.each do |cartitem|%>
+    <ul>
+      <li><%= cartitem.item.name %></li>
+      <li><%= cartitem.quantity %></li>
+      <li><%=cartitem.total%></li>
+      <p><%= button_to 'Remove', cart_item_path(cartitem), 
+                                method: :delete,
+                                data: { confirm: "are you sure, want to delete this item?"},
+                                turbo: false %></p>
+    </ul>
+<%end%>
+<p><%= button_to 'Back', search_path , :method => :get%>

@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   resources :home, only: [:show, :index]
   resources :restaurants
   resources :items
-  resources :carts, only: [:create]
-  resources :cart_items, only: [:index, :create, :update, :destroy]
+  resources :carts, only: :index
+  resources :cart_items
+  resources :orders, only: %i[index new show destroy create]
   get '/search', to: 'home#search'
 end

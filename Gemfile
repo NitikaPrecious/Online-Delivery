@@ -74,4 +74,3 @@ end
 
 gem "byebug"
 gem "letter_opener", group: :development
-
