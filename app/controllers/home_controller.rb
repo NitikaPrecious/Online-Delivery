@@ -2,9 +2,6 @@
 
 class HomeController < ApplicationController
 
-  def index
-  end
-
   def search
     item_id = params[:item_id]
     restaurant_id = params[:restaurant_id]
