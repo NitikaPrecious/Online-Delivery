@@ -9,9 +9,9 @@ Rails.application.routes.draw do
   root 'home#index'
   resources :home, only: [:show, :index]
   resources :restaurants
-  resources :items
+  resources :items, only: [:index, :show]
   resources :carts, only: :index
-  resources :cart_items
+  resources :cart_items, only: [:create, :destroy]
   resources :orders, only: %i[index new show destroy create]
   get '/search', to: 'home#search'
 end

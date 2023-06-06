@@ -3,9 +3,6 @@
 class CartItemsController < ApplicationController
   before_action :set_cart
 
-  def show
-    @cart_item = @cart.cart_items.find(params[:id])
-  end
 
   def create
     item = Item.find(params[:cart_item_id])
