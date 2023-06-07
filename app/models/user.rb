@@ -6,14 +6,10 @@ class User < ApplicationRecord
   
   after_validation :normalize_name, on: :create
   after_create :send_welcome_mail, :create_cart
-
-
   
   has_many :orders
   has_one :cart
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates :phone_number, presence: true
+  validates :first_name,:last_name,:phone_number, presence: true
   validates :phone_number, numericality: { only_integer: true }
   validates :phone_number,length: {is: 10}
   def normalize_name
