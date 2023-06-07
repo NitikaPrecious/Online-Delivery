@@ -13,6 +13,10 @@ RSpec.describe Restaurant, type: :model do
     subject.description=nil
     expect(subject).to_not be_valid
   end
+  it "is not valid without a description" do
+    expect(subject.description.length).is_at_most(500).
+    with_long_message('Secret key must be less than 100 characters')
+  end
   it "is not valid without a address" do 
    subject.address=nil  
    expect(subject).to_not be_valid
