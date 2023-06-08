@@ -1,6 +1,6 @@
 class ChangeTotalToBeIntegerInOrders < ActiveRecord::Migration[7.0]
   def up
-    change_column :orders, :total, :decimal
+    change_column :orders, :total, :integer
   end
 
   def down

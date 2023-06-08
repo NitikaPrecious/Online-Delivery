@@ -7,4 +7,4 @@
     <p><%= link_to 'Show order', order %></p>
     <p><%= button_to 'Cancle order', order, method: :delete, data: { method: :delete, confirm: "are you sure, want to cancel order", turbo: false } %></p>
 <%end%>
-<p><%= button_to 'Back', search_path , :method => :get%>
+<p><%= button_to 'Back', root_path , :method => :get%>

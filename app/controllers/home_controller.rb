@@ -8,7 +8,7 @@ class HomeController < ApplicationController
     @results = if item_id.present? && restaurant_id.present?
                  Restaurant.includes(:items, :orders).where(id: restaurant_id, items: { id: item_id })
                elsif item_id.present?
-                 Item.includes(restaurant: :orders).where(id: item_id).map(&:restaurant)
+                 Item.includes(restaurant: :orders).where(id: item_id)
                elsif restaurant_id.present?
                  Restaurant.includes(:items, :orders).where(id: restaurant_id)
                else
