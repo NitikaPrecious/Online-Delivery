@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class RestaurantsController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
     if params[:query].blank?
       @restaurants = Restaurant.all

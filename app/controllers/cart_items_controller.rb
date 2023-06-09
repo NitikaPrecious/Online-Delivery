@@ -2,6 +2,7 @@
 
 class CartItemsController < ApplicationController
   before_action :set_cart
+  before_action :authenticate_user!
 
 
   def create
