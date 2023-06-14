@@ -1,10 +1,18 @@
 <h1>Order placed successfully</h1>
+<table>
+<tr>
+<th><%= button_to 'Home', root_path , :method => :get%></th>
+<th><%= button_to 'Cart', carts_path , :method => :get%></th>
+</tr>
+</table>
 <% @orders.each do |order|%>
     <p>
       <strong>Total:</strong>
       <%= order.total%>
     </p><br>
-    <p><%= link_to 'Show order', order %></p>
-    <p><%= button_to 'Cancle order', order, method: :delete, data: { method: :delete, confirm: "are you sure, want to cancel order", turbo: false } %></p>
+    <table>
+    <th><%= link_to 'Show order', order %></th>
+    <th><%= button_to 'Cancle order', order, method: :delete, data: { method: :delete, confirm: "are you sure, want to cancel order", turbo: false } %></th>
+    </table>
 <%end%>
-<p><%= button_to 'Back', root_path , :method => :get%>
+

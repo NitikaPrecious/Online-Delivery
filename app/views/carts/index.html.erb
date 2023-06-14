@@ -1,5 +1,13 @@
 <h1> "Cart Items" </h1>
-<% @carts.each do |cartitem|%>
+<table>
+<th><%= button_to "Home", root_path, method: :get%> </th>
+<th><%= button_to "Your Order", orders_path, method: :get%> </th>
+<table>
+<%if @cartItems.empty?%>
+  <h2>Your cart is empty!!</h2>
+<%else%>
+<% @cartItems.each do |cartitem|%>
+
     <ul>
       <li><%= cartitem.item.name %></li>
       <li><%= cartitem.quantity %></li>
@@ -8,6 +16,8 @@
                                 method: :delete,
                                 data: { confirm: "are you sure, want to delete this item?"},
                                 turbo: false %></p>
-    </ul>
+ <%end%>
+    <h4>Total Price: <%=@cartItems.pluck(:total).inject(:+)%></h4>
+  <%= button_to "order", order_cart_items_path(cart_item_id: @cartItems.first), method: :post %>
+  </ul>
 <%end%>
-<p><%= button_to 'Back', search_path , :method => :get%>

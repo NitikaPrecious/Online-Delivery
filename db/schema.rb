@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_07_071334) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_12_113328) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -43,17 +43,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_07_071334) do
     t.integer "item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "cart_id"
-    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
+    t.integer "user_id"
     t.index ["item_id"], name: "index_cart_items_on_item_id"
-  end
-
-  create_table "carts", force: :cascade do |t|
-    t.integer "total_amount"
-    t.integer "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_carts_on_user_id"
+    t.index ["user_id"], name: "index_cart_items_on_user_id"
   end
 
   create_table "item_categories", force: :cascade do |t|
@@ -79,20 +71,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_07_071334) do
     t.integer "quantity"
     t.decimal "sub_total"
     t.integer "order_id", null: false
-    t.integer "cart_item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["cart_item_id"], name: "index_order_items_on_cart_item_id"
+    t.integer "item_id"
+    t.index ["item_id"], name: "index_order_items_on_item_id"
     t.index ["order_id"], name: "index_order_items_on_order_id"
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "total"
+    t.string "total"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "restaurant_id", null: false
-    t.index ["restaurant_id"], name: "index_orders_on_restaurant_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -102,8 +92,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_07_071334) do
     t.string "address"
     t.string "phone_1"
     t.string "phone_2"
-    t.integer "minimum_order"
-    t.integer "delivery_charge"
+    t.string "minimum_order"
+    t.string "delivery_charge"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -127,13 +117,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_07_071334) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "items"
-  add_foreign_key "carts", "users"
   add_foreign_key "items", "item_categories"
   add_foreign_key "items", "restaurants"
-  add_foreign_key "order_items", "cart_items"
   add_foreign_key "order_items", "orders"
-  add_foreign_key "orders", "restaurants"
   add_foreign_key "orders", "users"
 end

@@ -1,5 +1,5 @@
 <%if @results.empty?%>
-    <h2>There is no Item present!!</h2>
+    <h1>There is no Item present!!</h1>
     <%= button_to 'Back', root_path, method: :get %>
 <%end%>
 
@@ -7,12 +7,16 @@
   <h2><%= restaurant.name %></h2>
   <ul>
     <% restaurant.items.each do |item| %>
-      <li>Name :<%= item.name %></li>
-      <li>Description : <%= item.description %></li>
+      <td> <li>Name :<%= item.name %></li></td>
+      <td><li>Description : <%= item.description %></li><td>
       <li>Price : <%= item.price %></li>
-      <%= button_to "Add to Cart", cart_items_path(cart_item_id: item.id), method: :post%>
-      <%= button_to 'Order', orders_path(cart_item_id: item.id ), method: :post %>
-      <%= button_to 'Back', root_path, method: :get %>
+      <table>
+      <tr>
+      <th><%= button_to "Add to Cart", cart_items_path(cart_item_id: item.id), method: :post%></th>
+      <th><%= button_to 'Order', orders_path(item_id: item.id ), method: :post %></th>
+      <th><%= button_to 'Back', root_path, method: :get %></th>
+      </tr>
+      </table>
     <% end %>
   </ul>
 <% end %>

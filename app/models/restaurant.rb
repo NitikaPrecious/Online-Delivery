@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Restaurant < ApplicationRecord
-  has_many :orders
   has_many :items, dependent: :destroy
   validates :name, :description,:address,:phone_1,:phone_2,:minimum_order,:delivery_charge,presence: true
   validates :phone_1, :phone_2, numericality: { only_integer: true }

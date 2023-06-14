@@ -11,7 +11,12 @@ Rails.application.routes.draw do
   resources :restaurants
   resources :items, only: [:index, :show]
   resources :carts, only: :index
-  resources :cart_items, only: [:create, :destroy]
-  resources :orders, only: [:index, :new, :show, :destroy, :create]
+  resources :cart_items, only: [:create, :destroy] do
+  post 'order', on: :collection
+  # member do
+  #   post :order
+  # end
+ end 
+resources :orders, only: [:index, :new, :show, :destroy, :create]
   get '/search', to: 'home#search'
 end

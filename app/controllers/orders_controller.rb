@@ -12,23 +12,24 @@ class OrdersController < ApplicationController
   end
 
   def create
-    order = Order.new(user: current_user, restaurant: Item.find(params[:cart_item_id]).restaurant)
+    order = Order.new(user: current_user)
+    item = Item.find(params[:item_id])
     if order.save
-      if cartItem = @cart_item.where(item_id: params[:cart_item_id])&.last
-        order_item = OrderItem.new(cart_item: cartItem, order: order,quantity:1)
+      if item.present?
+        order_item = OrderItem.new(item: item, order: order, quantity: 1)
         order_item.save
         quantity = order_item.quantity
-        order_item.update(sub_total: cartItem.item.price * quantity)
+        order_item.update(sub_total: item.price * quantity)
       else
         item = Item.find(params[:cart_item_id])
         cartItem = CartItem.new(item: item, quantity: 1, total:item.price)
-        order_item = OrderItem.new(cart_item_id: cartItem, order: order, quantity:1)
+        order_item = OrderItem.new(item_id: cartItem, order: order, quantity:1)
         order_item.save
         quantity = item.quantity
-        order_item.update(sub_total: cartItem.total)
+        order_item.update(sub_total: item.total)
       end
       order.update(total:order_item.sub_total)
-      redirect_to orders_path
+      return redirect_to orders_path
     else
       redirect_to root_path
     end
@@ -44,6 +45,6 @@ class OrdersController < ApplicationController
   private
 
   def set_cart_items
-    @cart_item = current_user.cart.cart_items
+    @cart_item = current_user.cart_items
   end
 end

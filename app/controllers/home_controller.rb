@@ -6,13 +6,13 @@ class HomeController < ApplicationController
     item_id = params[:item_id]
     restaurant_id = params[:restaurant_id]
     @results = if item_id.present? && restaurant_id.present?
-                 Restaurant.includes(:items, :orders).where(id: restaurant_id, items: { id: item_id })
+                 Restaurant.includes(:items).where(id: restaurant_id, items: { id: item_id })
                elsif item_id.present?
-                 Item.includes(restaurant: :orders).where(id: item_id)
+                 Item.includes(:restaurant).where(id: item_id).map(&:restaurant)
                elsif restaurant_id.present?
-                 Restaurant.includes(:items, :orders).where(id: restaurant_id)
+                 Restaurant.includes(:items).where(id: restaurant_id)
                else
-                 Restaurant.includes(:items, :orders).all
+                 Restaurant.includes(:items).all
                end
   end
 

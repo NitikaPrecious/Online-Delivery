@@ -5,10 +5,10 @@ class User < ApplicationRecord
          :recoverable, :validatable
   
   after_validation :normalize_name, on: :create
-  after_create :send_welcome_mail, :create_cart
+  after_create :send_welcome_mail
   
   has_many :orders
-  has_one :cart
+  has_many :cart_items, dependent: :destroy
   validates :first_name,:last_name,:phone_number, presence: true
   validates :phone_number, numericality: { only_integer: true }
   validates :phone_number,length: {is: 10}
@@ -18,9 +18,5 @@ class User < ApplicationRecord
 
   def send_welcome_mail
     UserMailer.welcome_mail(self).deliver_now
-  end
-
-  def create_cart
-    Cart.create(user_id: id)
   end
 end

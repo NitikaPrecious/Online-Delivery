@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register ItemCategory do
-  # permit_params :name
+   permit_params :name
   #
   # or
   #
