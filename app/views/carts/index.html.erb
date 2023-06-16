@@ -1,8 +1,4 @@
 <h1> "Cart Items" </h1>
-<table>
-<th><%= button_to "Home", root_path, method: :get%> </th>
-<th><%= button_to "Your Order", orders_path, method: :get%> </th>
-<table>
 <%if @cartItems.empty?%>
   <h2>Your cart is empty!!</h2>
 <%else%>
@@ -21,3 +17,7 @@
   <%= button_to "order", order_cart_items_path(cart_item_id: @cartItems.first), method: :post %>
   </ul>
 <%end%>
+<table>
+<th><%= button_to "Home", root_path, method: :get%> </th>
+<th><%= button_to "Your Order", orders_path, method: :get%> </th>
+</table>

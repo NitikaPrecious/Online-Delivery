@@ -29,23 +29,9 @@ class CartItemsController < ApplicationController
       order.order_items.create(order_id:order,item_id: cartItem.item_id,quantity: cartItem.quantity,sub_total:cartItem.total)
       end
       cart_items.destroy_all
-      # redirect_to order_cart_item_path(cart_item_id: @cartItems )
       redirect_to orders_path(order)
     else
       redirect_to root_path, status: :unprocessable_entity
     end
   end
-  #   user= current_user
-  #   cart_items = user.cart_items
-  #   #@total_sum = cart_items.pluck(:sub_total).inject(:+)
-  #   order= Order.create(user:user)
-  #   if order.save
-  #   cart_items.each do |cart_item|
-  #     order.order_items.create(name: cart_item.item.name, price: cart_item.price,quantity: cart_item.quantity)
-  #   end 
-  # end
-
-  #   @cart_items.destroy_all
-  #   redirect_to orders_path(order)
-  # end
 end
